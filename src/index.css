@@ -131,7 +131,7 @@ body {
   background-position: center;
   filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.2));
   transition: transform 0.05s linear;
-  transform: translate(var(--x), var(--y)) scaleX(var(--flip));
+  transform: translate(var(--x), calc(var(--y) - 10px)) scaleX(var(--flip));
 }
 
 .fighter.block {
