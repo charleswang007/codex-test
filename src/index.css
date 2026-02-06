@@ -94,9 +94,8 @@ body {
 
 .fill {
   height: 100%;
-  width: 100%;
+  width: calc(var(--hp, 100) * 1%);
   background: var(--accent);
-  transform-origin: left center;
   transition: width 0.1s linear;
 }
 
