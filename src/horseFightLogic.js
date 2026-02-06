@@ -119,12 +119,12 @@ function resolveHit(attacker, defender) {
     (attacker.facing === 'LEFT' && defender.x <= attacker.x);
 
   if (distance <= spec.range && facingCorrect) {
-    const dmg = defender.isBlocking ? Math.ceil(spec.damage * 0.3) : spec.damage;
+    const dmg = defender.isBlocking ? 0 : spec.damage;
     const nextAttacker = { ...attacker, attackHit: true };
     const nextDefender = {
       ...defender,
       health: Math.max(0, defender.health - dmg),
-      stunned: defender.isBlocking ? 0.05 : 0.18,
+      stunned: defender.isBlocking ? 0 : 0.18,
     };
     return [nextAttacker, nextDefender];
   }
