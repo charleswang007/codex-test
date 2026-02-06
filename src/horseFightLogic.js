@@ -1,6 +1,6 @@
 const ARENA_WIDTH = 720;
 const ARENA_HEIGHT = 360;
-const GROUND_Y = 300;
+const GROUND_Y = 40;
 
 const MOVE_SPEED = 220;
 const JUMP_SPEED = 420;

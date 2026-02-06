@@ -143,21 +143,26 @@ export default function App() {
           </div>
         </div>
 
-        <div className="arena" role="application" aria-label="Horse fight arena">
+        <div
+          className="arena"
+          role="application"
+          aria-label="Horse fight arena"
+          style={{ '--ground': `${(state.arena.ground / state.arena.height) * 100}%` }}
+        >
           <div className="ground" />
           <div
             className={`fighter player ${state.player.isBlocking ? 'block' : ''} ${state.player.attackType ? 'attack' : ''} ${state.player.attackType || ''}`}
             style={{
-              '--x': `${state.player.x}px`,
-              '--y': `${state.arena.ground - state.player.y}px`,
+              '--x': `${(state.player.x / state.arena.width) * 100}%`,
+              '--y': `${((state.arena.ground + state.player.y) / state.arena.height) * 100}%`,
               '--flip': state.player.facing === 'LEFT' ? -1 : 1,
             }}
           />
           <div
             className={`fighter cpu ${state.cpu.isBlocking ? 'block' : ''} ${state.cpu.attackType ? 'attack' : ''} ${state.cpu.attackType || ''}`}
             style={{
-              '--x': `${state.cpu.x}px`,
-              '--y': `${state.arena.ground - state.cpu.y}px`,
+              '--x': `${(state.cpu.x / state.arena.width) * 100}%`,
+              '--y': `${((state.arena.ground + state.cpu.y) / state.arena.height) * 100}%`,
               '--flip': state.cpu.facing === 'LEFT' ? -1 : 1,
             }}
           />
