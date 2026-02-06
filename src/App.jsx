@@ -118,7 +118,7 @@ export default function App() {
         <header className="header">
           <div>
             <div className="title">雙馬對決</div>
-            <div className="subtitle">農曆新年版</div>
+            <div className="subtitle">2026 農曆新年版</div>
           </div>
           <div className="score">單人對 AI</div>
         </header>

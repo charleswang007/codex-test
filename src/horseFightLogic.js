@@ -11,7 +11,8 @@ const ATTACKS = {
   kick: { range: 90, damage: 9, duration: 0.28, cooldown: 0.55 },
 };
 
-const CPU_DAMAGE_MULTIPLIER = 0.6;
+const CPU_DAMAGE_MULTIPLIER = 0.5;
+const PLAYER_DAMAGE_MULTIPLIER = 1.2;
 
 function lcg(seed) {
   const next = (seed * 1664525 + 1013904223) >>> 0;
@@ -123,7 +124,9 @@ function resolveHit(attacker, defender) {
   if (distance <= spec.range && facingCorrect) {
     const base = defender.isBlocking ? 0 : spec.damage;
     const dmg =
-      attacker.id === 'cpu' ? Math.ceil(base * CPU_DAMAGE_MULTIPLIER) : base;
+      attacker.id === 'cpu'
+        ? Math.ceil(base * CPU_DAMAGE_MULTIPLIER)
+        : Math.ceil(base * PLAYER_DAMAGE_MULTIPLIER);
     const nextAttacker = { ...attacker, attackHit: true };
     const nextDefender = {
       ...defender,
