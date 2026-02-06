@@ -212,6 +212,11 @@ body {
   color: var(--muted);
 }
 
+.winner {
+  color: #e0302a;
+  font-weight: 700;
+}
+
 .controls {
   display: flex;
   gap: 8px;

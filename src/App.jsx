@@ -109,12 +109,7 @@ export default function App() {
     []
   );
 
-  const statusText =
-    state.status === 'READY'
-      ? '按空白鍵或開始鍵開打。'
-      : state.status === 'GAME_OVER'
-      ? `勝者：${state.winner === 'PLAYER' ? '你' : '對手'}。按 R 重新開始。`
-      : '戰鬥中';
+  const winnerLabel = state.winner === 'PLAYER' ? '你' : 'AI';
 
   return (
     <div className="page" style={arenaStyle}>
@@ -168,7 +163,15 @@ export default function App() {
           />
         </div>
 
-        <div className="status">{statusText}</div>
+        <div className="status">
+          {state.status === 'READY' && '按空白鍵或開始鍵開打。'}
+          {state.status === 'GAME_OVER' && (
+            <>
+              勝者：<span className="winner">{winnerLabel}</span>。按 R 重新開始。
+            </>
+          )}
+          {state.status === 'RUNNING' && '戰鬥中'}
+        </div>
 
         <div className="controls">
           <button type="button" onClick={start} disabled={state.status !== 'READY'}>
