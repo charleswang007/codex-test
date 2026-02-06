@@ -34,6 +34,10 @@ export default function App() {
     block: false,
   });
 
+  const setInput = useCallback((key, value) => {
+    inputRef.current[key] = value;
+  }, []);
+
   useEffect(() => {
     let frameId;
     let last = performance.now();
@@ -80,7 +84,7 @@ export default function App() {
       const action = KEY_MAP[event.key];
       if (action) {
         event.preventDefault();
-        inputRef.current[action] = true;
+        setInput(action, true);
       }
     }
 
@@ -88,7 +92,7 @@ export default function App() {
       const action = KEY_MAP[event.key];
       if (action) {
         event.preventDefault();
-        inputRef.current[action] = false;
+        setInput(action, false);
       }
     }
 
@@ -98,7 +102,7 @@ export default function App() {
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
     };
-  }, [restart, start]);
+  }, [restart, setInput, start]);
 
   const arenaStyle = useMemo(
     () => ({ '--horse-url': `url(${horseUrl})` }),
@@ -181,6 +185,73 @@ export default function App() {
           >
             {isMuted ? '音樂：關' : '音樂：開'}
           </button>
+        </div>
+
+        <div className="touch-controls" aria-label="觸控操作">
+          <div className="touch-row">
+            <button
+              type="button"
+              className="touch-btn"
+              onPointerDown={(e) => { e.preventDefault(); setInput('left', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('left', false); }}
+              onPointerLeave={() => setInput('left', false)}
+              aria-label="左"
+            >
+              左
+            </button>
+            <button
+              type="button"
+              className="touch-btn"
+              onPointerDown={(e) => { e.preventDefault(); setInput('right', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('right', false); }}
+              onPointerLeave={() => setInput('right', false)}
+              aria-label="右"
+            >
+              右
+            </button>
+            <button
+              type="button"
+              className="touch-btn"
+              onPointerDown={(e) => { e.preventDefault(); setInput('jump', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('jump', false); }}
+              onPointerLeave={() => setInput('jump', false)}
+              aria-label="跳"
+            >
+              跳
+            </button>
+          </div>
+          <div className="touch-row">
+            <button
+              type="button"
+              className="touch-btn attack"
+              onPointerDown={(e) => { e.preventDefault(); setInput('punch', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('punch', false); }}
+              onPointerLeave={() => setInput('punch', false)}
+              aria-label="出拳"
+            >
+              出拳
+            </button>
+            <button
+              type="button"
+              className="touch-btn attack"
+              onPointerDown={(e) => { e.preventDefault(); setInput('kick', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('kick', false); }}
+              onPointerLeave={() => setInput('kick', false)}
+              aria-label="踢擊"
+            >
+              踢擊
+            </button>
+            <button
+              type="button"
+              className="touch-btn block"
+              onPointerDown={(e) => { e.preventDefault(); setInput('block', true); }}
+              onPointerUp={(e) => { e.preventDefault(); setInput('block', false); }}
+              onPointerLeave={() => setInput('block', false)}
+              aria-label="防禦"
+            >
+              防禦
+            </button>
+          </div>
         </div>
 
         <div className="hint">
