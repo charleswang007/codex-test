@@ -127,13 +127,19 @@ export default function App() {
           <div className="bar">
             <div className="label">你</div>
             <div className="meter">
-              <div className="fill" style={{ width: `${state.player.health}%` }} />
+              <div
+                className="fill"
+                style={{ transform: `scaleX(${Math.max(0, state.player.health) / 100})` }}
+              />
             </div>
           </div>
           <div className="bar">
             <div className="label">對手</div>
             <div className="meter">
-              <div className="fill cpu" style={{ width: `${state.cpu.health}%` }} />
+              <div
+                className="fill cpu"
+                style={{ transform: `scaleX(${Math.max(0, state.cpu.health) / 100})` }}
+              />
             </div>
           </div>
         </div>
